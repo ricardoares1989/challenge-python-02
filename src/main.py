@@ -19,13 +19,38 @@ def generate_password():
         uppercase_in_password = random.randint(1, password_size - lowercase_in_password - 1)
         symbols_in_password = random.randint(1, password_size - lowercase_in_password - uppercase_in_password)
         total_chars = lowercase_in_password + numbers_in_password + uppercase_in_password + symbols_in_password
+    # This part generate the lowercases characters in the password.
     lowercase_chars = []
     i = 0
-    print(lowercase_in_password)
     while len(lowercase_chars) != lowercase_in_password:
-        i = random.randint(0,len(string.ascii_lowercase)-1)
+        i = random.randint(0,len(string.ascii_lowercase) - 1)
         lowercase_chars.append(string.ascii_lowercase[i])
-    print(lowercase_chars)
+
+    # This part generate the numbers in the password.
+    numbers_chars = []
+    j = 0
+    while len(numbers_chars) != numbers_in_password:
+        j = random.randint(0, len(string.digits) - 1)
+        numbers_chars.append(string.digits[j])
+    
+    # This part generate the uppercase chars in password.
+    uppercase_chars = []
+    k = 0
+    while len(uppercase_chars) != uppercase_in_password:
+        k = random.randint(0, len(string.ascii_uppercase) - 1)
+        uppercase_chars.append(string.ascii_uppercase[k])
+    
+    # This part generate the symbols in password.
+    symbols_chars = []
+    l = 0
+    while len(symbols_chars) != symbols_in_password:
+        l = random.randint(0, len(SYMBOLS)- 1)
+        symbols_chars.append(SYMBOLS[l])
+    
+    password_array = uppercase_chars + lowercase_chars + numbers_chars + symbols_chars
+    random.shuffle(password_array)
+    password_string = ''.join(password_array)
+    return password_string
 
 def validate(password):
 
